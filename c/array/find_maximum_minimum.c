@@ -18,6 +18,12 @@ int main(void)
         printf("Invalid Input\n");
         return 1;
     }
+    else if (count == 0)
+    {
+        printf("Array must have at least one element\n");
+        return 1;
+    }
+    
     s32 Arr[count];
     printf("Input %hhu elements in the array :\n",count);
     if((ScanArr(Arr,count)) != 0)
@@ -25,21 +31,23 @@ int main(void)
         printf("Invalid Input\n");
         return 1;
     }
-    if((FindMaxArr(Arr,count,&Max)) == 0)
+    if((FindMaxArr(Arr,count,&Max)) != 0)
     {
-        printf("Maximum element is : %d\n",Max);
+        return 1;
     }
-    if((FindMinArr(Arr,count,&Min)) == 0)
+    printf("Maximum element is : %d\n",Max);
+    if((FindMinArr(Arr,count,&Min)) != 0)
     {
-        printf("Minimum element is : %d\n",Min);
+        return 1;
     }
+    printf("Minimum element is : %d\n",Min);
     return 0;
 }
 u8 FindMaxArr(s32 Arr[],u8 count,s32 *Max)
 {
-    if((count == 0) || (Max == NULL))
+    if(Max == NULL)
     {
-        printf("No Found elements\n");
+        printf("Invalid Input\n");
         return 1;
     }
     else
@@ -57,9 +65,9 @@ u8 FindMaxArr(s32 Arr[],u8 count,s32 *Max)
 }
 u8 FindMinArr(s32 Arr[],u8 count,s32 *Min)
 {
-    if ((Min == NULL) || (count == 0))
+    if(Min == NULL)
     {
-        printf("No Found elements\n");
+        printf("Invalid Input\n");
         return 1;
     }
     else
